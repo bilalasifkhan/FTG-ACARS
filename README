@@ -1,0 +1,67 @@
+Hi There :-)
+
+Let's start planning :-)
+
+First off, I'd like to have these common things said …
+
+... naming variables:
+
+Variables will be named as the following. If it is a member variable, add a preceding m. If it's a pointer, an additional p. If it's a general object, add o. If it's a float, f, double d, integer i, number n, ...
+
+For example a pointer variable for an ACARS object would be: pACARS. A float variable with some value: fValue. A member object: m_oObject.
+
+... workspace structure:
+
+If something is in development, do what you want. However bear in mind that the final stuff should be well structured. So clear names, and stuff. Some folders would be good, too.
+
+Ok … now let's see what I think we will need.
+
+FTG-ACARS v4
+-> Core Functionality
+-->Flight Data Recorder
+-->Flight Data Interpreter
+-> Windows/Window management
+-> Several Modules
+--> Debriefing
+--> LiveACARS
+--> PAX Announcements
+--> ...
+
+There's an approach I currently favorite:
+
+class FTGACARS
+-> INIT
+-> RUN
+--> Fetch stuff from FS
+--> Update internal logic
+--> Call registered modules
+
+For instance a typical main() would look like this:
+
+main()
+{
+
+	FTGACARS *pFTGACARS = new FTGACARS;
+
+	pFTGACARS->Init();
+
+	LiveACARS *pLiveACARS = new LiveACARS;
+
+	pFTGACARS->RegisterModule(pLiveACARS)
+
+	pFTGACARS-run();
+
+}
+
+
+So FTGACARS::run() would be
+
+{
+	Fetch_FlightSim_Stuff();
+
+	Foreach module in Module do
+		module->Handle();
+
+	UpdateCurrentWindow();
+}
+
