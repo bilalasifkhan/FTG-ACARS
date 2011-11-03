@@ -1,0 +1,25 @@
+Elements we need our engine to measure:
+
+1) Altitude
+2) Speed
+3) Fuel on Board (FOB)
+4) GMT TIME (Present state)
+5) Block Times 
+
+These Elements can be measured seperately in individual classes.
+Therefore our DataRecord Class Definitons should be:
+
+Pilot (Main parent)
+
+Children: Elements as mentioned above.
+
+Each child class must be extended from one parent class in order to keep things simple.
+Each pilot and child elements will record minimum number of variables and each variable set must be private. Therefore, each class will have helper methods to protect variables.
+
+This is a very basic setup of how we can store our records and retrieve them.
+
+Again:
+The main Pilot Class I suggest could be called PilotAcars, its dependent children would be ElementAcars eg. AltitudeAcars, SpeedAcars, BlockTimesAcars, etc.
+BlockTimesAcars could save time as long ?? <- This is a suggestion...
+
+Again this is the basic setup I was thinking on how to keep track of ACARS records ...
